@@ -128,3 +128,33 @@ img{
 .type{
   color: yellow;
 }
+/* Movie details container */
+.details-container{
+    margin-top: 40px;
+    margin-left: 20px;
+    width: 700px;
+    height: 70vh;
+    /* border: 2px solid black; */
+    box-shadow: -3px 0px 15px 7px rgb(231, 225, 225);
+    display: flex;
+}
+.left-details-container{
+  width: 250px;
+  height: 100%;
+  
+  /* border: 2px solid black; */
+}
+.left-details-container img{
+  width: 250px;
+  height: 100%;
+
+  /* border: 2px solid black; */
+}
+.right-details-container{
+  margin-top: 20px;
+  margin-left: 15px;
+  /* margin: 15px; */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}

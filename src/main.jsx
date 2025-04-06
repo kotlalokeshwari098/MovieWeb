@@ -3,6 +3,7 @@ import './index.css'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import MovieList from './pages/MovieList'
+import MovieDetails from './pages/MovieDetails'
 import Favourites from './pages/Favourites'
 import AboutUs from './pages/AboutUs'
 import ContactUs from './pages/ContactUs'
@@ -19,6 +20,7 @@ function Header() {
           <Route path='/' element={<Layout />}>
           <Route path='/' element={<Home />} />
           <Route path='/movielist' element={<MovieList />} />
+          <Route path='/movielist/:id' element={<MovieDetails />} />
           <Route path='/favourites' element={<Favourites />} />
           <Route path='/aboutus' element={<AboutUs />} />
           <Route path='/contactus' element={<ContactUs />} />

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 
 export default function MovieList() {
@@ -21,6 +22,7 @@ export default function MovieList() {
             {
                 imgUrl: item.Poster,
                 names: item.Title,
+                imdbID:item.imdbID,
                 type: item.Type,
                 year: item.Year
             }))
@@ -32,6 +34,7 @@ export default function MovieList() {
 
     return (
         <>
+       
             <div className="movie-list-container">
                 <div className="search-bar">
                     <input type="text" placeholder="Enter the movie name"
@@ -42,6 +45,7 @@ export default function MovieList() {
                 </div>
                 <div className="movie-list">
                     {details.map((movie, index) => (
+                        <Link to={movie.imdbID}>
                         <div className="movie-card" key={index}>
                             <div className="movie-image">
                                 <img src={movie.imgUrl} alt="" />
@@ -56,10 +60,12 @@ export default function MovieList() {
                                 <p>{movie.year}</p>
                             </div>
                         </div>
+                        </Link>
                     ))
                     }
                 </div>
             </div>
+          
         </>
     )
 }
