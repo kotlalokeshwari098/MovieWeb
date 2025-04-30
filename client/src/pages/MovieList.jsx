@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+// import axios from 'axios';
+import { getMovie } from "../services/GetServices";
 
 
 export default function MovieList() {
@@ -10,26 +12,42 @@ export default function MovieList() {
             setMovieName(e.target.value.trim());
         
     }
+//  const API = `http://www.omdbapi.com/?s=${movieName}&apikey=be0a73f4`;
+   
 
-    async function getMovieDetails() {
-        const movieDetails = await fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=be0a73f4`).then(response => response.json());
-        console.log(movieDetails);
-        if (!movieDetails.Search) {
-            setDetails([]); // Reset to empty array if no movies found
-            return;
-        }
-        const details = movieDetails.Search.map((item) => (
-            {
-                imgUrl: item.Poster,
-                names: item.Title,
-                imdbID:item.imdbID,
-                type: item.Type,
-                year: item.Year
-            }))
-        console.log(details);
-        setDetails(details);
-
-    }
+async function getMovieDetails() {
+//    const API = `http://www.omdbapi.com/?s=titanic&apikey=be0a73f4`;
+  // const movieDetails = await fetch(`http://www.omdbapi.com/?s=${movieName}&apikey=be0a73f4`).then(response => response.json());
+  // console.log(movieDetails);
+  try {
+    // const datas = await axios.get(API);
+    const datas = await getMovie();
+    console.log(datas.data.Search);
+    const details =datas.data.Search.map((item) => ({
+      imgUrl: item.Poster,
+      names: item.Title,
+      imdbID: item.imdbID,
+      type: item.Type,
+      year: item.Year,
+    }));
+    console.log(details);
+    setDetails(details);
+    
+  } catch (error) {
+    console.log('Error message:',error.message);
+    console.log('error status:',error.response.status);
+    console.log('Error data',error.response.data);
+  }
+  // if (!movieDetails.Search) {
+  //     setDetails([]); // Reset to empty array if no movies found
+  // return;
+  // }
+  
+}
+    useEffect(()=>{
+     getMovieDetails();
+    },[])
+   
 
 
     return (
